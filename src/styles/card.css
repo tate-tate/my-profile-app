@@ -1,0 +1,94 @@
+/* Cards Styling (Specific to Cards) */
+
+/* Card Layout (Main Content Area) */
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 2rem; /* Space between cards */
+    margin-top: 3rem;
+  }
+  
+  /* Card Style */
+  .profile-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 300px;
+
+  }
+  .profile-card__img{
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        left: 0;
+        top: 0;
+    }
+  }
+
+  .profile-card__content{
+    p{
+        color: #000000;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+  }
+
+  
+  /* Card Hover Effects */
+  .card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Slight lift on hover */
+  }
+  
+  /* Card Title */
+  .card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  
+  /* Card Footer (if applicable) */
+  .card .card-footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+  
+  .card .card-footer a {
+    color: #0073e6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .card .card-footer a:hover {
+    color: #005bb5;
+  }
+  
+  /* Adjustments for Small Screens */
+  @media (max-width: 768px) {
+    .main-content {
+      grid-template-columns: 1fr; /* Stack cards on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      padding: 1rem; /* Reduce padding on smaller devices */
+    }
+  }
+  
