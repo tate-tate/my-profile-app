@@ -17,7 +17,7 @@
   
   /* 5. Improve media defaults */
   img, picture, video, canvas, svg {
-    display: block;
+    display: flex;
     max-width: 100%;
   }
   

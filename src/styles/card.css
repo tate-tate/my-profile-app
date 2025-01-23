@@ -3,7 +3,7 @@
 /* Card Layout (Main Content Area) */
 .main-content {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* Responsive grid */
     gap: 2rem; /* Space between cards */
     margin-top: 3rem;
   }
@@ -19,7 +19,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    max-width: 300px;
+    width: 500px;
 
   }
   .profile-card__img{

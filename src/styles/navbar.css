@@ -97,7 +97,7 @@
     }
   
     .navbar .navbar-toggle {
-      display: block; /* Show the toggle button on mobile */
+      display: flex; /* Show the toggle button on mobile */
       cursor: pointer; /* Make the hamburger button clickable */
     }
   
