@@ -39,6 +39,10 @@ const App = () => {
     (title === "" || profile.title === title) && 
     (profile.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
+  const clearFilters = () => {
+    setTitle("");  // Reset title filter
+    setSearchTerm("");  // Reset search term filter
+  };
 
   return (
     <>
@@ -71,12 +75,16 @@ const App = () => {
                   placeholder="Search by name"
                 />
               </div>
+              <div className="clear-filters">
+              <button onClick={clearFilters}>Clear Filters</button>
+              </div>
             </div>
             <div className="profile-cards">
               {filteredProfiles.map(profile => (
                 <Card key={profile.email} {...profile} />
               ))}
             </div>
+
           </Wrapper>
         </main>
     </>
