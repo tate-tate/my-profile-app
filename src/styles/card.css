@@ -7,7 +7,12 @@
     gap: 2rem; /* Space between cards */
     margin-top: 3rem;
   }
-  
+  .profile-cards {
+    display: flex;
+    gap: 2rem; /* Adjust spacing between cards */
+    justify-content: center;
+    flex-wrap: wrap;
+}
   /* Card Style */
   .profile-card {
     background-color: #fff;
@@ -15,11 +20,13 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.2s ease;
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100%;
-    width: 500px;
+    width: 250px;
+    display: flex;
+    gap: 2rem; /* Adjust spacing between cards */
+    justify-content: center; /* Center cards horizontally */
+    flex-wrap: wrap; /* Ensure responsiveness */
 
   }
   .profile-card__img{
