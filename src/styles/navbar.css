@@ -1,109 +1,87 @@
 /* Navbar Styles */
-
-/* Navbar Container */
 .navbar {
-    background-color: #333; /* Dark background color for the navbar */
-    padding: 1rem 2rem; /* Padding to give the navbar some space */
-    display: flex; /* Flexbox to arrange the list items horizontally */
-    justify-content: space-between; /* Space between logo and nav items */
-    align-items: center; /* Vertically center the items */
-    position: sticky; /* Keep the navbar fixed at the top of the page */
-    top: 0;
-    z-index: 1000; /* Ensure navbar stays on top */
-  }
-  
-  /* Navbar List (ul) */
-  .navbar ul {
-    list-style: none; /* Remove default bullet points */
-    display: flex; /* Flexbox for horizontal alignment */
-    gap: 2rem; /* Space between navbar items */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-  }
-  
-  /* Navbar List Items (li) */
-  .navbar li {
-    margin: 0; /* Remove margin from individual items */
-  }
-  
-  /* Navbar Links (a) */
-  .navbar a {
-    text-decoration: none; /* Remove underline from links */
-    color: #fff; /* White text color */
-    font-size: 1.1rem; /* Slightly larger font size for visibility */
-    font-weight: 600; /* Make the text bold */
-    transition: color 0.3s ease; /* Smooth color transition on hover */
-  }
-  
-  .navbar a:hover,
-  .navbar a:focus {
-    color: #0073e6; /* Change link color on hover */
-  }
-  
-  /* Navbar Logo (if applicable) */
-  .navbar .logo {
-    font-size: 1.8rem; /* Larger font for the logo */
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-right: auto; /* Push the logo to the left */
-  }
-  
-  /* Mobile Navbar Toggle (Hamburger) */
-  .navbar .navbar-toggle {
-    display: none; /* Hide the toggle button on desktop */
-    background-color: #0073e6; /* Toggle button color */
-    width: 30px;
-    height: 3px;
-    position: relative;
-  }
-  
-  .navbar .navbar-toggle::before,
-  .navbar .navbar-toggle::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: #0073e6;
-    transition: transform 0.3s ease;
-  }
-  
-  .navbar .navbar-toggle::before {
-    top: -8px; /* Adjust position for the top bar */
-  }
-  
-  .navbar .navbar-toggle::after {
-    bottom: -8px; /* Adjust position for the bottom bar */
-  }
-  
-  /* Mobile Navbar (Responsive) */
-  @media (max-width: 768px) {
-    .navbar ul {
-      flex-direction: column; /* Stack items vertically on smaller screens */
-      display: none; /* Hide the navigation items by default */
-      width: 100%;
-      text-align: center;
-      background-color: #333; /* Keep the same background color */
-      padding: 1rem 0;
-      position: absolute;
-      top: 60px; /* Position it just below the navbar */
-      left: 0;
-      z-index: 999; /* Ensure it stays on top */
-    }
-  
-    .navbar ul.show {
-      display: flex; /* Display the menu when the hamburger is clicked */
-    }
-  
-    .navbar .navbar-toggle {
-      display: flex; /* Show the toggle button on mobile */
-      cursor: pointer; /* Make the hamburger button clickable */
-    }
-  
-    .navbar a {
-      font-size: 1.5rem; /* Increase the font size on mobile for readability */
-      padding: 0.8rem; /* Add padding to make links more clickable */
-    }
-  }
-  
+  background-color: #333;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+/* Logo */
+.navbar .logo {
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: auto;
+}
+
+/* Navbar List */
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #0073e6;
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+  background-color: transparent;
+  border: 2px solid #0073e6;
+  color: #0073e6;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: #0073e6;
+  color: #fff;
+}
+
+/* Dark Mode */
+.dark-mode .navbar {
+  background-color: #222;
+}
+
+.dark-mode .navbar a {
+  color: #ddd;
+}
+
+.dark-mode .navbar a:hover {
+  color: #4fa3ff;
+}
+
+.dark-mode .theme-toggle {
+  border-color: #ffa500;
+  color: #ffa500;
+}
+
+.dark-mode .theme-toggle:hover {
+  background-color: #ffa500;
+  color: #222;
+}

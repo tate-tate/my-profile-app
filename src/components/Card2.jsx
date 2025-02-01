@@ -1,5 +1,5 @@
 import img from '../assets/manson.jpg';
-import "../styles/card.css";
+//import "../styles/card.css";
 
 const Card2 = () => {
     const name = 'Manson';

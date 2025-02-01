@@ -1,5 +1,5 @@
 import img from '../assets/senior-photo.jpg';
-import "../styles/card.css";
+//import "../styles/card.css";
 
 const Card1 = () => {
     const name = 'Tate Sever';
