@@ -7,6 +7,7 @@ import Card from "./components/Card";
 import Wrapper from './components/Wrapper';
 import seniorphoto from './assets/senior-photo.jpg';
 import manson from "./assets/manson.jpg";
+import ProfileForm from './components/ProfileForm';
 
 const App = () => {
   // Manage Dark Mode Globally
@@ -65,6 +66,9 @@ const App = () => {
       <main>
         <Wrapper>
           <About />
+        </Wrapper>
+        <Wrapper>
+          <ProfileForm></ProfileForm>
         </Wrapper>
         <Wrapper>
           <div className="filter-wrapper">
