@@ -15,6 +15,17 @@ const App = () => {
     localStorage.getItem("theme") === "dark"
   );
 
+  const [profiles, setProfiles] = useState([]);
+  useEffect(() => {
+    fetch("https://web.ics.purdue.edu/~severg/profile-app/fetch-data.php")
+      .then(res => res.json())
+      .then(data =>{
+        console.log(data)
+        setProfiles(data)});
+    
+  }, []);
+  
+
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark-mode");
@@ -25,12 +36,14 @@ const App = () => {
     }
   }, [darkMode]);
 
+  /*
   const profiles = [
     { email: 'severg@purdue.edu', name: 'Tate Sever', title: 'Student', img: seniorphoto },
     { email: 'manson@manson.net', name: 'Manson', title: 'Cat', img: manson },
     { email: 'manson1@manson.net', name: 'Manson', title: 'Cat', img: manson },
     { email: 'manson2@manson.net', name: 'Manson', title: 'Cat', img: manson }
   ];
+  */
 
   const titles = [...new Set(profiles.map(profile => profile.title))];
   const [title, setTitle] = useState("");
