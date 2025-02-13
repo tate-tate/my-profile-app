@@ -10,78 +10,53 @@ import manson from "./assets/manson.jpg";
 import ProfileForm from './components/ProfileForm';
 
 const App = () => {
-  // Manage Dark Mode Globally
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
-  const [profiles, setProfiles] = useState([]);
-  useEffect(() => {
-    fetch("https://web.ics.purdue.edu/~severg/profile-app/fetch-data.php")
-      .then(res => res.json())
-      .then(data =>{
-        console.log(data)
-        setProfiles(data)});
-    
-  }, []);
-  
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark-mode");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark-mode");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
-
-  /*
-  const profiles = [
-    { email: 'severg@purdue.edu', name: 'Tate Sever', title: 'Student', img: seniorphoto },
-    { email: 'manson@manson.net', name: 'Manson', title: 'Cat', img: manson },
-    { email: 'manson1@manson.net', name: 'Manson', title: 'Cat', img: manson },
-    { email: 'manson2@manson.net', name: 'Manson', title: 'Cat', img: manson }
-  ];
-  */
-
-  const titles = [...new Set(profiles.map(profile => profile.title))];
+  const [profiles, setProfiles] = useState([]);  // Initialize as an empty array
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(1);
   const [title, setTitle] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [animation, setAnimation] = useState(false);
+  const [titles, setTitles] = useState([]);
+
+  // Fetch profiles and set the profiles and count state
+  useEffect(() => {
+    fetch(`https://web.ics.purdue.edu/~severg/profile-app/fetch-data-with-filter.php?title=${title}&name=${searchTerm}&page=${page}&limit=10`)
+      .then(res => res.json())
+      .then(data => {
+        setProfiles(data.profiles); // Make sure profiles is always an array
+        setCount(data.count);  // Ensure count is a valid number
+        setPage(data.page);  // Keep the page number consistent
+        console.log(data);
+      });
+  }, [title, searchTerm, page]);
+
+  // Fetch titles based on the selected title, searchTerm, and page
+  useEffect(() => {
+    fetch(`https://web.ics.purdue.edu/~severg/profile-app/get-titles.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTitles(data.titles || []); // Ensure titles is always an array
+      });
+  }, [title, searchTerm, page]);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
-    setAnimation(true);
   };
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setAnimation(true);
-  };
-
-  const filteredProfiles = profiles.filter(profile => 
-    (title === "" || profile.title === title) &&
-    profile.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const clearFilters = () => {
-    setTitle("");
-    setSearchTerm("");
-    setAnimation(true);
   };
 
   return (
     <>
       <header>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Navbar />
       </header>
       <main>
         <Wrapper>
           <About />
         </Wrapper>
         <Wrapper>
-          <ProfileForm></ProfileForm>
+          <ProfileForm />
         </Wrapper>
         <Wrapper>
           <div className="filter-wrapper">
@@ -90,30 +65,43 @@ const App = () => {
               <select id="title-select" onChange={handleTitleChange}>
                 <option value="">All</option>
                 {titles.map((title, index) => (
-                  <option key={index} value={title}>{title}</option>
+                  <option key={index} value={title}>
+                    {title}
+                  </option>
                 ))}
               </select>
             </div>
 
             <div className="filter-search">
               <label htmlFor="search-name">Search by name: </label>
-              <input 
-                type="text" 
-                id="search-name" 
-                value={searchTerm} 
+              <input
+                type="text"
+                id="search-name"
+                value={searchTerm}
                 onChange={handleSearchChange}
                 placeholder="Search by name"
               />
             </div>
-            <div className="clear-filters">
-              <button onClick={clearFilters}>Clear Filters</button>
-            </div>
           </div>
-          <div className={style['profile-cards']}>
-            {filteredProfiles.map(profile => (
-              <Card key={profile.email} {...profile} animate={animation} updateAnimate={() => setAnimation(false)} />
+          <div className={style["profile-cards"]}>
+            {profiles.map(profile => (
+              <Card key={profile.email} {...profile} />
             ))}
           </div>
+          {
+            count === 0 && <p>No Profiles found</p>
+          }
+          {count > 10 &&
+          <div className="pagination">
+            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+              Previous
+            </button>
+            <span>{page}/{Math.ceil(count / 10)}</span>
+            <button onClick={() => setPage(page + 1)} disabled={page >= Math.ceil(count / 10)}>
+              Next
+            </button>
+          </div>
+}
         </Wrapper>
       </main>
     </>
@@ -121,3 +109,4 @@ const App = () => {
 };
 
 export default App;
+
