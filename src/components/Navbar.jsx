@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "../styles/navbar.css"
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -13,9 +14,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <ul>
-      <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Profiles</a></li>
+      <li><Link to="/">HomePage</Link></li>
+        <li><Link to="/about">About </Link></li>
+        <li><Link to="/add-profile">Add Profile </Link></li>
       </ul>
       <button onClick={toggleTheme}>
         {darkMode ? "Light Mode" : "Dark Mode"}
