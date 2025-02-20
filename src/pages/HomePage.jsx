@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import Wrapper from '../components/Wrapper';
 import ProfileForm from '../components/ProfileForm';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const HomePage = () => {
   const [profiles, setProfiles] = useState([]);  // Initialize as an empty array
@@ -72,7 +74,9 @@ const HomePage = () => {
           </div>
           <div className={style["profile-cards"]}>
             {profiles.map(profile => (
-              <Card key={profile.email} {...profile} />
+              <Link to={`/profile/${profile.id}`} key={profile.id}> 
+              <Card key={profile.email} {...profile} /> 
+              </Link>
             ))}
           </div>
           {
