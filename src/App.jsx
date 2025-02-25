@@ -1,6 +1,5 @@
 import './App.css';
-import style from "./styles/card.module.css";
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Navbar from "./components/Navbar";
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
@@ -10,8 +9,24 @@ import NotFound from "./pages/NotFound";
 import ProfileDetailPage from "./pages/ProfileDetailPage";
 import ProfileEditPage from "./pages/ProfileEditPage";
 import ProfileLayoutPage from "./pages/ProfileLayoutPage";
+import { ModeContext, ModeProvider } from "./contexts/ModeContext";
 
 const App = () => {
+  return (
+    <ModeProvider>
+      <ModeContent /> {/* Wrap everything inside ModeProvider */}
+    </ModeProvider>
+  );
+};
+
+const ModeContent = () => {
+  const { darkMode } = useContext(ModeContext); // ✅ Now inside ModeProvider
+
+  // Apply class to <body> whenever darkMode changes
+  useEffect(() => {
+    document.body.className = darkMode === "light" ? "light" : "dark";
+  }, [darkMode]); 
+
   return (
     <HashRouter>
       <header>
@@ -34,4 +49,3 @@ const App = () => {
 };
 
 export default App;
-

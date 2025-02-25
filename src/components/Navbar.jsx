@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
-import "../styles/navbar.css"
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { ModeContext } from "../contexts/ModeContext"; // Import the context
+import styles from "../styles/navbar.module.css";
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleTheme = () => {
-    document.body.classList.toggle("dark-bg");
-    document.querySelector(".navbar").classList.toggle("dark-bg");
-    setDarkMode(!darkMode);
-  };
+  const { darkMode, handleModeChange } = useContext(ModeContext); // Use context directly
 
   return (
-    <nav className="navbar">
+    <nav className={`${styles["navbar"]}`}>
       <ul>
-      <li><Link to="/">HomePage</Link></li>
-        <li><Link to="/about">About </Link></li>
-        <li><Link to="/add-profile">Add Profile </Link></li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/add-profile">Add Profile</Link>
+        </li>
       </ul>
-      <button onClick={toggleTheme}>
-        {darkMode ? "Light Mode" : "Dark Mode"}
+      <button onClick={handleModeChange}>
+        {darkMode === "light" ? "Dark Mode" : "Light Mode"}
       </button>
     </nav>
   );

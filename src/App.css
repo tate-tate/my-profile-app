@@ -62,3 +62,23 @@
 .clear-filters button:hover {
   background-color: #0056b3;
 }
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+/* Light Mode (Default) */
+body.light {
+  background-color: white;
+  color: black;
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: black;
+  color: white;
+}
