@@ -10,24 +10,29 @@ import ProfileDetailPage from "./pages/ProfileDetailPage";
 import ProfileEditPage from "./pages/ProfileEditPage";
 import ProfileLayoutPage from "./pages/ProfileLayoutPage";
 import { ModeContext, ModeProvider } from "./contexts/ModeContext";
+import Login from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import  ProtectedRoute  from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <ModeProvider>
-      <ModeContent /> {/* Wrap everything inside ModeProvider */}
+      <ModeContent />
     </ModeProvider>
   );
 };
 
 const ModeContent = () => {
-  const { darkMode } = useContext(ModeContext); // ✅ Now inside ModeProvider
+  const { darkMode } = useContext(ModeContext);
 
-  // Apply class to <body> whenever darkMode changes
+
   useEffect(() => {
     document.body.className = darkMode === "light" ? "light" : "dark";
   }, [darkMode]); 
 
   return (
+    <AuthProvider>
     <HashRouter>
       <header>
         <Navbar />
@@ -35,16 +40,19 @@ const ModeContent = () => {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/add-profile" element={<AddProfile />} />
+          <Route path="/add-profile" element={<ProtectedRoute><AddProfile /></ProtectedRoute>} />
           <Route path="/profile/:id" element={<ProfileLayoutPage />}>
             <Route index element={<ProfileDetailPage />} />
-            <Route path="edit" element={<ProfileEditPage />} />
+            <Route path="edit" element={<ProtectedRoute><ProfileEditPage /></ProtectedRoute>} />
           </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </HashRouter>
+  </AuthProvider>
   );
 };
 
