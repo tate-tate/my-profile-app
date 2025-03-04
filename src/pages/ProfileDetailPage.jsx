@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
 import { Link } from "react-router-dom";
 import style from "../styles/profiledetail.module.css";
-import { AuthContext } from "../contexts/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 
 const ProfileDetailPage = () => {
   const { id } = useParams();
