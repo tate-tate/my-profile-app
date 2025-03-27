@@ -13,14 +13,16 @@ import Login from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-const LazyComponent = lazy(() => import("./pages/ProfileDetailPage"));
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const App = () => {
   return (
-    <ModeProvider>
-      <ModeContent />
-    </ModeProvider>
+    <Provider store={store}>
+      <ModeProvider>
+        <ModeContent />
+      </ModeProvider>
+    </Provider>
   );
 };
 
@@ -30,6 +32,8 @@ const ModeContent = React.memo(() => {
   useEffect(() => {
     document.body.className = darkMode === "light" ? "light" : "dark";
   }, [darkMode]);
+
+  const LazyComponent = lazy(() => import("./pages/ProfileDetailPage"));
 
   const renderLazyComponent = useCallback(() => (
     <Suspense fallback={<div>Loading...</div>}>
