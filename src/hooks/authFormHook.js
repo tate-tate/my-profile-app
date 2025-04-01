@@ -3,11 +3,13 @@ import style from "../styles/ProfileForm.module.css";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import { use } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/authSlice";
 
 const useAuthForm = (isRegister) => {
 
   const usernameRef = useRef(null);
-  const { login } = useContext(AuthContext);
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -48,7 +50,8 @@ const useAuthForm = (isRegister) => {
         });
         setSuccessMessage(data.success);
         setError("");
-        login();
+        //login();
+        dispatch(login());
         navigate("/");
       } else {
         setError(data.error);

@@ -7,18 +7,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../redux/slices/modeSlice";
 
 const Navbar = () => {
+  const isLogin = useSelector((state) => state.auth.isLogin);
 //  const { isLogin, logout } = useContext(AuthContext);
   const { mode } = useSelector((state) => state.mode.mode);
   const dispatch = useDispatch();
   const handleModeChange = () => {
     dispatch(toggle());
   };
-  const { isLogin, logout } = useContext(AuthContext);
 
 
   const navigate = useNavigate();
   const handleClick = () => {
-    logout();
+    dispatch(logout());
     navigate("/login");
   }
   return (
