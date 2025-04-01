@@ -26,11 +26,11 @@ const authSlice = createSlice({
   },
   reducers: {
     login: (state) => {
-      isLogin = true;
+      state.isLogin = true;
       localStorage.setItem('isLogin', 'true');
     },
     logout: (state) => {
-      isLogin = false;
+      state.isLogin = false;
       localStorage.setItem('isLogin', 'false');
     },
   },

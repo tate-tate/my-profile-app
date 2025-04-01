@@ -5,6 +5,7 @@ import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../redux/slices/modeSlice";
+import { logout } from "../redux/slices/authSlice";
 
 const Navbar = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
