@@ -1,0 +1,9 @@
+{
+    "login": "To log in, click on the 'Login' button in the navigation bar and enter your username and password. If you do not have an account, please press 'register' on the navbar to create one.",
+    "register": "To register, click on the 'Register' button in the navigation bar and fill out the registration form. Make sure to provide a valid email address and password.",
+    "createProfile": "To create a profile, log in and navigate to the 'Add Profile' page from the navigation bar.",
+    "viewProfile": "To view a profile more closely, click on a profile card on the homepage.",
+    "editProfile": "To edit a profile, navigate to the 'Edit Profile' page from the navigation bar. You can update your profile information there.",
+    "deleteProfile": "To delete a profile, navigate to the 'Edit Profile' page and click on the 'Delete Profile' button. Confirm the deletion when prompted.",
+    "searchProfiles": "To search for profiles, use the search bar on the homepage. Enter a name or keyword and press 'Enter' to see the results."
+  }
